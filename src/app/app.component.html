@@ -1,9 +1,8 @@
-<h1>ViewChild directive</h1>
-<button (click)="increment()" #button>Increment child</button>
-<button (click)="increment()" #button>Increment child</button>
-<button (click)="increment()" #button>Increment child</button>
-
-<app-child></app-child>
-<app-child></app-child>
-<app-child></app-child>
-
+<div>
+  <label for="">DOB: </label>
+  <input type="date" #dobInput (blur)="calculateAge()">
+</div>
+<div>
+  <label for="">Age: </label>
+  <input type="text" #ageInput>
+</div>

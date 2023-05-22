@@ -1,37 +1,24 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
-import { ChildComponent } from './child/child.component';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild(ChildComponent, { static: true }) child?: ChildComponent;
-  @ViewChild('button', { static: true })
-  buttonRef?: ElementRef<HTMLButtonElement>;
+export class AppComponent {
+  // accessing an HTML element before calling a method
 
-  @ViewChildren(ChildComponent) children?: QueryList<ChildComponent>;
+  @ViewChild('dobInput') dateOfBirth?: ElementRef;
+  @ViewChild('ageInput') age?: ElementRef;
 
-  increment() {
-    console.log(this.child);
-    this.child?.increment();
-  }
+  calculateAge() {
+    let birthYear = new Date(
+      this.dateOfBirth?.nativeElement.value
+    ).getFullYear();
 
-  ngAfterViewInit(): void {
-    if (this.buttonRef?.nativeElement) {
-      this.buttonRef.nativeElement.innerHTML = 'after init';
-    }
+    let currentYear = new Date().getFullYear();
+    let age = currentYear - birthYear;
 
-    this.children?.forEach((child) => {
-      console.log('Child', child);
-    });
+    this.age!.nativeElement.value = age;
   }
 }
