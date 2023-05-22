@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { ChildComponent } from './child/child.component';
 
 @Component({
@@ -11,6 +18,8 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('button', { static: true })
   buttonRef?: ElementRef<HTMLButtonElement>;
 
+  @ViewChildren(ChildComponent) children?: QueryList<ChildComponent>;
+
   increment() {
     console.log(this.child);
     this.child?.increment();
@@ -20,5 +29,9 @@ export class AppComponent implements AfterViewInit {
     if (this.buttonRef?.nativeElement) {
       this.buttonRef.nativeElement.innerHTML = 'after init';
     }
+
+    this.children?.forEach((child) => {
+      console.log('Child', child);
+    });
   }
 }
