@@ -1,5 +1,7 @@
 import {
+  AfterContentInit,
   Component,
+  ContentChild,
   DoCheck,
   Input,
   OnChanges,
@@ -13,8 +15,12 @@ import {
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.scss'],
 })
-export class ChildComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
+export class ChildComponent
+  implements OnInit, OnDestroy, OnChanges, DoCheck, AfterContentInit
+{
   @Input() channelName = '';
+
+  @ContentChild('projectedContent') projectedContent: any;
 
   constructor() {
     console.log('Child constructor is called');
@@ -22,17 +28,25 @@ export class ChildComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
 
   ngOnInit(): void {
     console.log('Child OnInit is called');
+    console.log('Child OnInit - ' + this.projectedContent);
   }
 
-  // should avoid ngOnChanges and ngDoCheck on the same component
+  // we can not acces this variable until the content is initialized
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
     console.log('Child OnChanges is called');
+    console.log('Child OnChanges - ' + this.projectedContent);
   }
 
   ngDoCheck() {
     console.log('Child DoCheck is called');
+    console.log('Child DoCheck - ' + this.projectedContent);
+  }
+
+  ngAfterContentInit(): void {
+    console.log('Child AfterContentInit is called');
+    console.log('Child AfterContentInit - ' + this.projectedContent);
   }
 
   ngOnDestroy(): void {
