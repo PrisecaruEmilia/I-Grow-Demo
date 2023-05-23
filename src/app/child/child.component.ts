@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   Input,
   OnChanges,
   OnDestroy,
@@ -12,7 +13,7 @@ import {
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.scss'],
 })
-export class ChildComponent implements OnInit, OnDestroy, OnChanges {
+export class ChildComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
   @Input() channelName = '';
 
   constructor() {
@@ -23,9 +24,15 @@ export class ChildComponent implements OnInit, OnDestroy, OnChanges {
     console.log('Child OnInit is called');
   }
 
+  // should avoid ngOnChanges and ngDoCheck on the same component
+
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
     console.log('Child OnChanges is called');
+  }
+
+  ngDoCheck() {
+    console.log('Child DoCheck is called');
   }
 
   ngOnDestroy(): void {
