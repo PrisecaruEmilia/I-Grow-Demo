@@ -1,4 +1,5 @@
 import {
+  AfterContentChecked,
   AfterContentInit,
   Component,
   ContentChild,
@@ -16,7 +17,13 @@ import {
   styleUrls: ['./child.component.scss'],
 })
 export class ChildComponent
-  implements OnInit, OnDestroy, OnChanges, DoCheck, AfterContentInit
+  implements
+    OnInit,
+    OnDestroy,
+    OnChanges,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked
 {
   @Input() channelName = '';
 
@@ -47,6 +54,10 @@ export class ChildComponent
   ngAfterContentInit(): void {
     console.log('Child AfterContentInit is called');
     console.log('Child AfterContentInit - ' + this.projectedContent);
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('Child AfterContentChecked is called');
   }
 
   ngOnDestroy(): void {
