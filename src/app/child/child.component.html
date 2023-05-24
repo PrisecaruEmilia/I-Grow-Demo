@@ -10,3 +10,12 @@
   </ng-container>
 </div>
 
+<hr>
+<h1>Ng-Template</h1>
+<ng-template [ngIf]="true">This is a condition inside ng-template</ng-template>
+
+<div *ngIf="false else elseBlock">Condition is True</div>
+<ng-template #elseBlock>
+  <div>Condition is false</div>
+</ng-template>
+

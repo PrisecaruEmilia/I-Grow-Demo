@@ -10,4 +10,6 @@ export class ChildComponent {
 
   // so if we want to show only the odd numbers, that is an additional condition
   // so we need ng-container, and not another element, but why ??
+
+  // so we normally use ng-template when we want to achive else conditions
 }
