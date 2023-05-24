@@ -1,3 +1,9 @@
-<h1>{{ title | uppercase }}</h1>
+<div>
+  <ul>
+    <li *ngFor="let user of users | sortList: 'name'">
+      {{ user.name }} - {{ user.age }}
+    </li>
+  </ul>
+</div>
 
-<button (click)="log()">Log title</button>
+<button (click)="onClickAdd()">Add new user</button>
