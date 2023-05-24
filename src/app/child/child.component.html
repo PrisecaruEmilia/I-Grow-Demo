@@ -2,3 +2,11 @@
 <!-- <ng-content select="[title]"></ng-content> -->
 <ng-content></ng-content>
 
+<hr>
+<h1>Ng-Container section</h1>
+<div *ngFor="let number of numbers">
+  <ng-container *ngIf="number%2 === 0">
+    {{ number }}
+  </ng-container>
+</div>
+
