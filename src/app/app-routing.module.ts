@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PrivateComponent } from './private/private.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   {
     path: 'private',
     component: PrivateComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
